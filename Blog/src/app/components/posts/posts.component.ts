@@ -8,13 +8,16 @@ import { PostsService } from 'src/app/services/posts.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  posts?: IPost[];
+  posts?: IPost[] | null;
 
   constructor(private handler: PostsService) { }
 
   ngOnInit(): void {
     this.handler.getPosts()
-      .subscribe((posts) => this.posts = posts);
+      .subscribe((posts) => {
+        console.log(posts);
+        this.posts = posts
+      });
   }
 
 }

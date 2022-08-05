@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 import { IPost } from '../models/post.model';
 
@@ -7,26 +8,16 @@ import { IPost } from '../models/post.model';
   providedIn: 'root'
 })
 export class PostsService {
+  baseUrl = 'http://127.0.0.1:3000/'
+  postsUrl = 'posts/'
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getPosts(): Observable<IPost[]> {
-    return new Observable((observer) => {
-      let postArray = [
-        {
-          _id: 'abc',
-          title: 'Post 1',
-          body: 'This is post 1.'
-        },
-        {
-          _id: 'dfg',
-          title: 'Post 2',
-          body: 'This is post 2.'
-        },
-      ];
-
-      observer.next(postArray);
-      observer.error(new Error("There was an error while getting posts."))
-    });
+  getPosts(): Observable<IPost[] | null> {
+    return this.http
+      .get(this.baseUrl + this.postsUrl, { observe: 'response', responseType: 'json' })
+      .pipe(
+        map((res) => res.body)
+      ) as Observable<IPost[] | null>;
   }
 }
