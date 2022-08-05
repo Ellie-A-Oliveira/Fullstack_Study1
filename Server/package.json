@@ -4,7 +4,8 @@
   "description": "Blog server-side code",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startdev": "nodemon server.js"
   },
   "author": "Ellie de Oliveira",
   "license": "ISC",
@@ -14,5 +15,8 @@
     "joi": "^17.6.0",
     "mongoose": "^6.5.1",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }

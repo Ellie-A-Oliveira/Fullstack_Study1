@@ -16,7 +16,22 @@ router.use(function(err, req, res, next) {
     res.status(500).send('Something broke!');
 });
 
+// Parse body as JSON
 router.use(bodyParser.json());
+
+// Allow CORS from Angular front-end
+router.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,OPTIONS,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin, Content-Type, Accept, Accept-Language, Origin, User-Agent');
+    
+    if(req.method === 'OPTIONS') {
+        res.sendStatus(204);
+    }
+    else {
+        next();
+    }
+});
 
 // GET /
 router.get('/', [], async (req, res) => {

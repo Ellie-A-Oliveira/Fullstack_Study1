@@ -15,8 +15,8 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.handler.getPosts()
       .subscribe((posts) => {
-        console.log(posts);
         this.posts = posts
+        console.log(this.posts);
       });
   }
 
