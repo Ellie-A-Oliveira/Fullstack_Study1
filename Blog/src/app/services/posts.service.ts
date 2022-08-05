@@ -8,8 +8,8 @@ import { IPost } from '../models/post.model';
   providedIn: 'root'
 })
 export class PostsService {
-  baseUrl = 'http://127.0.0.1:3000/'
-  postsUrl = 'posts/'
+  private baseUrl = 'http://127.0.0.1:3000/'
+  private postsUrl = 'posts/'
 
   constructor(private http: HttpClient) { }
 
@@ -19,5 +19,10 @@ export class PostsService {
       .pipe(
         map((res) => res.body)
       ) as Observable<IPost[] | null>;
+  }
+
+  createPost(post: IPost) {
+    return this.http
+      .post(this.baseUrl + this.postsUrl, post);
   }
 }

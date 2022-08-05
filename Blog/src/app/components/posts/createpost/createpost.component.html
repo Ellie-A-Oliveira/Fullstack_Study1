@@ -1,0 +1,21 @@
+<button
+    class="btn btn-primary"
+    id="create-post-btn"
+    role="button"
+    (click)="collapseForm()"
+    >
+    Create Post</button>
+
+<div class="collapse" id="create-post-form">
+    <form [formGroup]="createPostForm" (ngSubmit)="submitPost()">
+        <div class="form-control">
+            <label for="title">Title</label>
+            <input name="title" type="text" formControlName="title" required>
+        </div>
+        <div class="form-control">
+            <label for="body">Content</label>
+            <input name="body" type="text" formControlName="body" required>
+        </div>
+        <button type="submit">Submit Post</button>
+    </form>
+</div>
