@@ -13,7 +13,8 @@ export class PostsComponent implements OnInit {
   constructor(private handler: PostsService) { }
 
   ngOnInit(): void {
-    this.posts = this.handler.getPosts();
+    this.handler.getPosts()
+      .subscribe((posts) => this.posts = posts);
   }
 
 }
