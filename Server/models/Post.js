@@ -16,10 +16,10 @@ const Post = mongoose.model("Post", schema, 'posts');
 
 exports.Post = Post;
 exports.validatePost = function(post) {
-    const schema = {
+    const schema = Joi.object({
         title: Joi.string().required(),
         body: Joi.string().required(),
-    };
+    });
 
-    return Joi.validate(post, schema);
+    return Joi.assert(post, schema);
 }

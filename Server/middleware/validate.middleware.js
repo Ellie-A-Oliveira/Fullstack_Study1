@@ -1,4 +1,6 @@
-module.exports = (validator, req, res, next) => {
-    validator(req.body);
-    next();
+module.exports = (validator) => {
+    return (err, req, res, next) => {
+        validator(req.body);
+        next();
+    }
 }
