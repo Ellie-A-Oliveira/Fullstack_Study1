@@ -1,11 +1,14 @@
 const express = require('express');
-const path = require('path');
+const app = express();
 
-const server = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-server.listen(PORT, () => {
-    server.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../Blog/', 'public', 'index.html')); // Change to webpack file once front-end is built
-    })
+const server = app.listen(PORT, () => {
+    console.log(`Running on port ${PORT}...`)
 });
+
+require('./database');
+
+require('./routes')(app);
+
+module.exports = server;
